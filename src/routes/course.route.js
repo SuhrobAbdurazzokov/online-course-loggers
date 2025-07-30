@@ -7,13 +7,13 @@ import controller from "../controllers/course.controller.js";
 const router = Router();
 
 router
-  .post(
-    "/",
-    uploadFile.single("image"),
-    validate(CourseValidation.create),
-    controller.createCourse
-  )
-  .get("/", controller.findAll)
-  .get("/:id", controller.findById);
+    .post(
+        "/",
+        uploadFile.single("image"),
+        validate(CourseValidation.create),
+        controller.createCourse
+    )
+    .get("/", controller.findAll)
+    .get("/:id", controller.findById);
 
 export default router;

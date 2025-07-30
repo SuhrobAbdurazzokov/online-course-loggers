@@ -11,61 +11,61 @@ import Admin from "../models/admin.model.js";
 const router = Router();
 
 router
-  .post(
-    "/signin",
-    requestLimit(10, 3),
-    validate(AdminValidation.signin),
-    controller.signIn
-  )
-  .post("/token", controller.generateNewToken)
-  .post("/signout", AuthGuard, controller.signOut)
+    .post(
+        "/signin",
+        requestLimit(10, 3),
+        validate(AdminValidation.signin),
+        controller.signIn
+    )
+    .post("/token", controller.generateNewToken)
+    .post("/signout", AuthGuard, controller.signOut)
 
-  .patch(
-    "/forget-password",
-    validate(AdminValidation.forgetPassword),
-    controller.forgetPassword
-  )
-  .patch(
-    "/confirm-otp",
-    validate(AdminValidation.confirmOTP),
-    controller.confirmOTP
-  )
-  .patch(
-    "/confirm-password",
-    validate(AdminValidation.confirmPassword),
-    controller.confirmPassword
-  )
+    .patch(
+        "/forget-password",
+        validate(AdminValidation.forgetPassword),
+        controller.forgetPassword
+    )
+    .patch(
+        "/confirm-otp",
+        validate(AdminValidation.confirmOTP),
+        controller.confirmOTP
+    )
+    .patch(
+        "/confirm-password",
+        validate(AdminValidation.confirmPassword),
+        controller.confirmPassword
+    )
 
-  .post(
-    "/",
-    AuthGuard,
-    RolesGuard(Roles.SUPERADMIN),
-    validate(AdminValidation.create),
-    controller.createAdmin
-  )
-  .get("/", AuthGuard, RolesGuard(Roles.SUPERADMIN), controller.findAll)
+    .post(
+        "/",
+        AuthGuard,
+        RolesGuard(Roles.SUPERADMIN),
+        validate(AdminValidation.create),
+        controller.createAdmin
+    )
+    .get("/", AuthGuard, RolesGuard(Roles.SUPERADMIN), controller.findAll)
 
-  .patch(
-    "/password/:id",
-    AuthGuard,
-    RolesGuard(Roles.SUPERADMIN, "ID"),
-    validate(AdminValidation.update),
-    controller.updateAdmin
-  )
+    .patch(
+        "/password/:id",
+        AuthGuard,
+        RolesGuard(Roles.SUPERADMIN, "ID"),
+        validate(AdminValidation.update),
+        controller.updateAdmin
+    )
 
-  .get(
-    "/:id",
-    AuthGuard,
-    RolesGuard(Roles.SUPERADMIN, "ID"),
-    controller.findById
-  )
-  .patch(
-    "/:id",
-    AuthGuard,
-    RolesGuard(Roles.SUPERADMIN, "ID"),
-    validate(AdminValidation.password),
-    controller.updatePasswordForAdmin
-  )
-  .delete("/:id", AuthGuard, RolesGuard(Roles.SUPERADMIN), controller.delete);
+    .get(
+        "/:id",
+        AuthGuard,
+        RolesGuard(Roles.SUPERADMIN, "ID"),
+        controller.findById
+    )
+    .patch(
+        "/:id",
+        AuthGuard,
+        RolesGuard(Roles.SUPERADMIN, "ID"),
+        validate(AdminValidation.password),
+        controller.updatePasswordForAdmin
+    )
+    .delete("/:id", AuthGuard, RolesGuard(Roles.SUPERADMIN), controller.delete);
 
 export default router;

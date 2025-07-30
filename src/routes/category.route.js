@@ -7,13 +7,13 @@ import { uploadFile } from "../middlewares/file-upload.js";
 const router = Router();
 
 router
-  .post(
-    "/",
-    uploadFile.single("image"),
-    validate(CategoryValidation.create),
-    controller.createCategory
-  )
-  .get("/", controller.findAll)
-  .get("/:id", controller.findById);
+    .post(
+        "/",
+        uploadFile.single("image"),
+        validate(CategoryValidation.create),
+        controller.createCategory
+    )
+    .get("/", controller.findAll)
+    .get("/:id", controller.findById);
 
 export default router;

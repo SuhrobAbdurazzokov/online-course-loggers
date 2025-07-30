@@ -13,29 +13,29 @@ import { globalError } from "./error/global-error.js";
 import logger from "./helpers/log/logger.js";
 
 export const application = async (app) => {
-  app.use(
-    cors({
-      origin: "*",
-    })
-  );
+    app.use(
+        cors({
+            origin: "*",
+        })
+    );
 
-  app.use(helmet());
+    app.use(helmet());
 
-  app.use(express.json());
+    app.use(express.json());
 
-  app.use(cookieParser());
+    app.use(cookieParser());
 
-  app.use("/api/uploads", express.static(join(process.cwd(), "../uploads")));
+    app.use("/api/uploads", express.static(join(process.cwd(), "../uploads")));
 
-  await connectDB();
+    await connectDB();
 
-  app.use("/api", router);
+    app.use("/api", router);
 
-  app.use(globalError);
+    app.use(globalError);
 
-  app.use(
-    expressWinston.errorLogger({
-      winstonInstance: logger,
-    })
-  );
+    app.use(
+        expressWinston.errorLogger({
+            winstonInstance: logger,
+        })
+    );
 };

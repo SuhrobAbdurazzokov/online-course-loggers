@@ -8,11 +8,11 @@ import courseRouter from "./course.route.js";
 const router = Router();
 
 router
-  .use("/admin", adminRouter)
-  .use("/owner-course", ownerCourseRouter)
-  .use("/category", categoryRouter)
-  .use("/course", courseRouter)
+    .use("/admin", adminRouter)
+    .use("/owner-course", ownerCourseRouter)
+    .use("/category", categoryRouter)
+    .use("/course", courseRouter)
 
-  .use(pageError);
+    .use(pageError);
 
 export default router;
